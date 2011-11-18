@@ -14,7 +14,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.util.*;
 import org.xml.sax.*;
-import org.xml.sax.helpers.DefaultHandler;
+import org.xml.sax.helpers.DefaultHandler; 
 
 /**
  * @author Michael Scherer
@@ -33,6 +33,7 @@ public class XtremeClient extends DefaultHandler
 	
 	public XtremeClient()
 	{
+		mURL = "";
 		mHandlers = new Vector<XtremeResponseHandler>();
 	}
 	
@@ -95,6 +96,18 @@ public class XtremeClient extends DefaultHandler
 		if (mInUse)
 			return false;
 		mInUse = true;
+		
+		if (mURL == "")
+		{
+			mResults = new Vector<Book>();
+			mResults.add(new Book());
+			for (XtremeResponseHandler xrh : mHandlers)
+			{
+				xrh.XtremeResponse(mResults);
+			}
+			
+			mInUse = false;
+		}
 		
 		BufferedReader in = null;
 		
