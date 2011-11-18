@@ -13,5 +13,6 @@
     <string name="blank"></string>
     <string name="book_topic">Topic</string>
     <color name="ucf_gold">#FFCC9900</color>
+    <string name="webURL">http://uctxts.freeiz.com/</string>
 
 </resources>
