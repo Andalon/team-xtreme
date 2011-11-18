@@ -13,6 +13,9 @@ import java.util.*;
  */
 public class Book
 {
+	/**
+	 * Creates an empty book instance
+	 */
 	public Book()
 	{
 		this.mRetailers = new Vector<Retailer>();

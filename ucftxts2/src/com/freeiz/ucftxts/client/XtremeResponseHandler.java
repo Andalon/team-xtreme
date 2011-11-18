@@ -4,6 +4,7 @@
 package com.freeiz.ucftxts.client;
 
 import java.util.*;
+import com.freeiz.ucftxts.client.Book;
 
 /**
  * @author Michael Scherer
