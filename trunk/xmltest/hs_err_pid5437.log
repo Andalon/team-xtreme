@@ -1,0 +1,295 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (classFileParser.cpp:3470), pid=5437, tid=139745714898688
+#  Error: ShouldNotReachHere()
+#
+# JRE version: 7.0_01-b08
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (21.1-b02 mixed mode linux-amd64 compressed oops)
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000001fb5800):  JavaThread "Unknown thread" [_thread_in_vm, id=5439, stack(0x00007f1915a20000,0x00007f1915b21000)]
+
+Stack: [0x00007f1915a20000,0x00007f1915b21000],  sp=0x00007f1915b1f080,  free space=1020k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x84b01a]  VMError::report_and_die()+0x2ea
+V  [libjvm.so+0x3e85c6]  report_should_not_reach_here(char const*, int)+0x46
+V  [libjvm.so+0x363f60]  ClassFileParser::parseClassFile(Symbol*, Handle, Handle, KlassHandle, GrowableArray<Handle>*, TempNewSymbol&, bool, Thread*)+0x1130
+V  [libjvm.so+0x367815]  ClassLoader::load_classfile(Symbol*, Thread*)+0x2b5
+V  [libjvm.so+0x7db547]  SystemDictionary::load_instance_class(Symbol*, Handle, Thread*)+0x3e7
+V  [libjvm.so+0x7dbd31]  SystemDictionary::resolve_instance_class_or_null(Symbol*, Handle, Handle, Thread*)+0x761
+V  [libjvm.so+0x7dc6af]  SystemDictionary::initialize_wk_klasses_until(SystemDictionary::WKID, SystemDictionary::WKID&, Thread*)+0x14f
+V  [libjvm.so+0x7dc8aa]  SystemDictionary::initialize_preloaded_classes(Thread*)+0x17a
+V  [libjvm.so+0x8267c4]  Universe::genesis(Thread*)+0x474
+V  [libjvm.so+0x826c74]  universe2_init()+0x24
+V  [libjvm.so+0x4cf1fd]  init_globals()+0xbd
+V  [libjvm.so+0x80ef72]  Threads::create_vm(JavaVMInitArgs*, bool*)+0x1e2
+V  [libjvm.so+0x51fb84]  JNI_CreateJavaVM+0x74
+C  [libjli.so+0x31b7]  JavaMain+0x97
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x0000000001fb5800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=5439, stack(0x00007f1915a20000,0x00007f1915b21000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 08:06 41293                              /usr/bin/eclipse/jre/bin/java
+00600000-00601000 rw-p 00000000 08:06 41293                              /usr/bin/eclipse/jre/bin/java
+01fab000-02022000 rw-p 00000000 00:00 0                                  [heap]
+cbe00000-cd2c0000 rw-p 00000000 00:00 0 
+cd2c0000-d1000000 rw-p 00000000 00:00 0 
+d1000000-d2f50000 rw-p 00000000 00:00 0 
+d2f50000-f0560000 rw-p 00000000 00:00 0 
+f0560000-f1500000 rw-p 00000000 00:00 0 
+f1500000-100000000 rw-p 00000000 00:00 0 
+7f190f37c000-7f190f3e1000 r--s 004cb000 08:06 977095                     /home/michael/android-sdks/platforms/android-8/android.jar
+7f190f3e1000-7f190f409000 rw-p 00000000 00:00 0 
+7f190f409000-7f190f40a000 ---p 00000000 00:00 0 
+7f190f40a000-7f190f50a000 rw-p 00000000 00:00 0 
+7f190f50a000-7f190f50b000 ---p 00000000 00:00 0 
+7f190f50b000-7f190f616000 rw-p 00000000 00:00 0 
+7f190f616000-7f190f634000 rw-p 00000000 00:00 0 
+7f190f634000-7f190f644000 rw-p 00000000 00:00 0 
+7f190f644000-7f190f72f000 rw-p 00000000 00:00 0 
+7f190f72f000-7f190f73a000 rw-p 00000000 00:00 0 
+7f190f73a000-7f190f758000 rw-p 00000000 00:00 0 
+7f190f758000-7f190f768000 rw-p 00000000 00:00 0 
+7f190f768000-7f190f852000 rw-p 00000000 00:00 0 
+7f190f852000-7f190f85b000 rw-p 00000000 00:00 0 
+7f190f85b000-7f190f8d0000 rw-p 00000000 00:00 0 
+7f190f8d0000-7f190f8d1000 rw-p 00000000 00:00 0 
+7f190f8d1000-7f190fb41000 rwxp 00000000 00:00 0 
+7f190fb41000-7f19128d1000 rw-p 00000000 00:00 0 
+7f19128d1000-7f19128eb000 r-xp 00000000 08:06 40525                      /usr/bin/eclipse/jre/lib/amd64/libzip.so
+7f19128eb000-7f1912aeb000 ---p 0001a000 08:06 40525                      /usr/bin/eclipse/jre/lib/amd64/libzip.so
+7f1912aeb000-7f1912aec000 rw-p 0001a000 08:06 40525                      /usr/bin/eclipse/jre/lib/amd64/libzip.so
+7f1912aec000-7f1912af8000 r-xp 00000000 08:06 527596                     /lib/libnss_files-2.12.1.so
+7f1912af8000-7f1912cf7000 ---p 0000c000 08:06 527596                     /lib/libnss_files-2.12.1.so
+7f1912cf7000-7f1912cf8000 r--p 0000b000 08:06 527596                     /lib/libnss_files-2.12.1.so
+7f1912cf8000-7f1912cf9000 rw-p 0000c000 08:06 527596                     /lib/libnss_files-2.12.1.so
+7f1912cf9000-7f1912d03000 r-xp 00000000 08:06 527507                     /lib/libnss_nis-2.12.1.so
+7f1912d03000-7f1912f02000 ---p 0000a000 08:06 527507                     /lib/libnss_nis-2.12.1.so
+7f1912f02000-7f1912f03000 r--p 00009000 08:06 527507                     /lib/libnss_nis-2.12.1.so
+7f1912f03000-7f1912f04000 rw-p 0000a000 08:06 527507                     /lib/libnss_nis-2.12.1.so
+7f1912f04000-7f1912f1b000 r-xp 00000000 08:06 527594                     /lib/libnsl-2.12.1.so
+7f1912f1b000-7f191311a000 ---p 00017000 08:06 527594                     /lib/libnsl-2.12.1.so
+7f191311a000-7f191311b000 r--p 00016000 08:06 527594                     /lib/libnsl-2.12.1.so
+7f191311b000-7f191311c000 rw-p 00017000 08:06 527594                     /lib/libnsl-2.12.1.so
+7f191311c000-7f191311e000 rw-p 00000000 00:00 0 
+7f191311e000-7f1913126000 r-xp 00000000 08:06 527510                     /lib/libnss_compat-2.12.1.so
+7f1913126000-7f1913325000 ---p 00008000 08:06 527510                     /lib/libnss_compat-2.12.1.so
+7f1913325000-7f1913326000 r--p 00007000 08:06 527510                     /lib/libnss_compat-2.12.1.so
+7f1913326000-7f1913327000 rw-p 00008000 08:06 527510                     /lib/libnss_compat-2.12.1.so
+7f1913327000-7f19135cb000 r--p 00000000 08:06 1048389                    /usr/lib/locale/locale-archive
+7f19135cb000-7f19135ce000 r-xp 00000000 08:06 40532                      /usr/bin/eclipse/jre/lib/amd64/libnpt.so
+7f19135ce000-7f19137cd000 ---p 00003000 08:06 40532                      /usr/bin/eclipse/jre/lib/amd64/libnpt.so
+7f19137cd000-7f19137ce000 rw-p 00002000 08:06 40532                      /usr/bin/eclipse/jre/lib/amd64/libnpt.so
+7f19137ce000-7f1913807000 r-xp 00000000 08:06 40508                      /usr/bin/eclipse/jre/lib/amd64/libjdwp.so
+7f1913807000-7f1913a06000 ---p 00039000 08:06 40508                      /usr/bin/eclipse/jre/lib/amd64/libjdwp.so
+7f1913a06000-7f1913a08000 rw-p 00038000 08:06 40508                      /usr/bin/eclipse/jre/lib/amd64/libjdwp.so
+7f1913a08000-7f1913a31000 r-xp 00000000 08:06 40546                      /usr/bin/eclipse/jre/lib/amd64/libjava.so
+7f1913a31000-7f1913c31000 ---p 00029000 08:06 40546                      /usr/bin/eclipse/jre/lib/amd64/libjava.so
+7f1913c31000-7f1913c33000 rw-p 00029000 08:06 40546                      /usr/bin/eclipse/jre/lib/amd64/libjava.so
+7f1913c33000-7f1913c42000 r-xp 00000000 08:06 40513                      /usr/bin/eclipse/jre/lib/amd64/libverify.so
+7f1913c42000-7f1913e41000 ---p 0000f000 08:06 40513                      /usr/bin/eclipse/jre/lib/amd64/libverify.so
+7f1913e41000-7f1913e43000 rw-p 0000e000 08:06 40513                      /usr/bin/eclipse/jre/lib/amd64/libverify.so
+7f1913e43000-7f1913e4a000 r-xp 00000000 08:06 524013                     /lib/librt-2.12.1.so
+7f1913e4a000-7f1914049000 ---p 00007000 08:06 524013                     /lib/librt-2.12.1.so
+7f1914049000-7f191404a000 r--p 00006000 08:06 524013                     /lib/librt-2.12.1.so
+7f191404a000-7f191404b000 rw-p 00007000 08:06 524013                     /lib/librt-2.12.1.so
+7f191404b000-7f19140cd000 r-xp 00000000 08:06 527505                     /lib/libm-2.12.1.so
+7f19140cd000-7f19142cc000 ---p 00082000 08:06 527505                     /lib/libm-2.12.1.so
+7f19142cc000-7f19142cd000 r--p 00081000 08:06 527505                     /lib/libm-2.12.1.so
+7f19142cd000-7f19142ce000 rw-p 00082000 08:06 527505                     /lib/libm-2.12.1.so
+7f19142ce000-7f1914c9e000 r-xp 00000000 08:06 40549                      /usr/bin/eclipse/jre/lib/amd64/server/libjvm.so
+7f1914c9e000-7f1914e9e000 ---p 009d0000 08:06 40549                      /usr/bin/eclipse/jre/lib/amd64/server/libjvm.so
+7f1914e9e000-7f1914f39000 rw-p 009d0000 08:06 40549                      /usr/bin/eclipse/jre/lib/amd64/server/libjvm.so
+7f1914f39000-7f1914f72000 rw-p 00000000 00:00 0 
+7f1914f72000-7f19150ec000 r-xp 00000000 08:06 527403                     /lib/libc-2.12.1.so
+7f19150ec000-7f19152eb000 ---p 0017a000 08:06 527403                     /lib/libc-2.12.1.so
+7f19152eb000-7f19152ef000 r--p 00179000 08:06 527403                     /lib/libc-2.12.1.so
+7f19152ef000-7f19152f0000 rw-p 0017d000 08:06 527403                     /lib/libc-2.12.1.so
+7f19152f0000-7f19152f5000 rw-p 00000000 00:00 0 
+7f19152f5000-7f19152f7000 r-xp 00000000 08:06 530635                     /lib/libdl-2.12.1.so
+7f19152f7000-7f19154f7000 ---p 00002000 08:06 530635                     /lib/libdl-2.12.1.so
+7f19154f7000-7f19154f8000 r--p 00002000 08:06 530635                     /lib/libdl-2.12.1.so
+7f19154f8000-7f19154f9000 rw-p 00003000 08:06 530635                     /lib/libdl-2.12.1.so
+7f19154f9000-7f191550f000 r-xp 00000000 08:06 40538                      /usr/bin/eclipse/jre/lib/amd64/jli/libjli.so
+7f191550f000-7f191570e000 ---p 00016000 08:06 40538                      /usr/bin/eclipse/jre/lib/amd64/jli/libjli.so
+7f191570e000-7f191570f000 rw-p 00015000 08:06 40538                      /usr/bin/eclipse/jre/lib/amd64/jli/libjli.so
+7f191570f000-7f1915727000 r-xp 00000000 08:06 527485                     /lib/libpthread-2.12.1.so
+7f1915727000-7f1915926000 ---p 00018000 08:06 527485                     /lib/libpthread-2.12.1.so
+7f1915926000-7f1915927000 r--p 00017000 08:06 527485                     /lib/libpthread-2.12.1.so
+7f1915927000-7f1915928000 rw-p 00018000 08:06 527485                     /lib/libpthread-2.12.1.so
+7f1915928000-7f191592c000 rw-p 00000000 00:00 0 
+7f191592c000-7f191594c000 r-xp 00000000 08:06 527506                     /lib/ld-2.12.1.so
+7f1915960000-7f191596a000 rw-p 00000000 00:00 0 
+7f191596a000-7f1915a20000 rw-p 00000000 00:00 0 
+7f1915a20000-7f1915a23000 ---p 00000000 00:00 0 
+7f1915a23000-7f1915b25000 rw-p 00000000 00:00 0 
+7f1915b40000-7f1915b48000 rw-s 00000000 08:06 1192427                    /tmp/hsperfdata_michael/5437
+7f1915b48000-7f1915b49000 rw-p 00000000 00:00 0 
+7f1915b49000-7f1915b4a000 r--p 00000000 00:00 0 
+7f1915b4a000-7f1915b4c000 rw-p 00000000 00:00 0 
+7f1915b4c000-7f1915b4d000 r--p 00020000 08:06 527506                     /lib/ld-2.12.1.so
+7f1915b4d000-7f1915b4e000 rw-p 00021000 08:06 527506                     /lib/ld-2.12.1.so
+7f1915b4e000-7f1915b4f000 rw-p 00000000 00:00 0 
+7fffd92f1000-7fffd9312000 rw-p 00000000 00:00 0                          [stack]
+7fffd93ff000-7fffd9400000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:57278 -Dfile.encoding=UTF-8 -Xbootclasspath:/home/michael/android-sdks/platforms/android-8/android.jar 
+java_command: com.freeiz.ucftxts.test.XmlQueryTest
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+USERNAME=michael
+SHELL=/bin/bash
+DISPLAY=:0.0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x84b980], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x84b980], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x6f3340], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x6f3340], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x6f3340], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x6f3340], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x6f2cb0], sa_mask[0]=0x00000004, sa_flags=0x10000004
+SIGHUP: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGINT: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGTERM: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGQUIT: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+
+
+---------------  S Y S T E M  ---------------
+
+OS:squeeze/sid
+
+uname:Linux 2.6.35-30-generic #56-Ubuntu SMP Mon Jul 11 20:01:08 UTC 2011 x86_64
+libc:glibc 2.12.1 NPTL 2.12.1 
+rlimit: STACK 8192k, CORE 0k, NPROC infinity, NOFILE 1024, AS infinity
+load average:0.36 0.17 0.09
+
+/proc/meminfo:
+MemTotal:        3073328 kB
+MemFree:           22592 kB
+Buffers:          116508 kB
+Cached:          1108840 kB
+SwapCached:            0 kB
+Active:          1889420 kB
+Inactive:         922564 kB
+Active(anon):    1282288 kB
+Inactive(anon):   322396 kB
+Active(file):     607132 kB
+Inactive(file):   600168 kB
+Unevictable:          48 kB
+Mlocked:              48 kB
+SwapTotal:        248828 kB
+SwapFree:         248828 kB
+Dirty:               180 kB
+Writeback:             0 kB
+AnonPages:       1586536 kB
+Mapped:           176780 kB
+Shmem:             18196 kB
+Slab:              85256 kB
+SReclaimable:      60928 kB
+SUnreclaim:        24328 kB
+KernelStack:        3344 kB
+PageTables:        35792 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     1785492 kB
+Committed_AS:    3445200 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:      134980 kB
+VmallocChunk:   34359583740 kB
+HardwareCorrupted:     0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       70336 kB
+DirectMap2M:     3057664 kB
+
+
+CPU:total 2 (2 cores per cpu, 1 threads per core) family 6 model 23 stepping 6, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 23
+model name	: Intel(R) Core(TM)2 Duo CPU     T9300  @ 2.50GHz
+stepping	: 6
+cpu MHz		: 2501.000
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 2
+core id		: 0
+cpu cores	: 2
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 10
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx lm constant_tsc arch_perfmon pebs bts rep_good aperfmperf pni dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm sse4_1 lahf_lm ida dts tpr_shadow vnmi flexpriority
+bogomips	: 4986.54
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 23
+model name	: Intel(R) Core(TM)2 Duo CPU     T9300  @ 2.50GHz
+stepping	: 6
+cpu MHz		: 2501.000
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 2
+core id		: 1
+cpu cores	: 2
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 10
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx lm constant_tsc arch_perfmon pebs bts rep_good aperfmperf pni dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm sse4_1 lahf_lm ida dts tpr_shadow vnmi flexpriority
+bogomips	: 4987.48
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 3073328k(22592k free), swap 248828k(248828k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (21.1-b02) for linux-amd64 JRE (1.7.0_01-b08), built on Oct  3 2011 01:18:26 by "java_re" with gcc 4.3.0 20080428 (Red Hat 4.3.0-8)
+
+time: Thu Nov 17 23:55:30 2011
+elapsed time: 0 seconds
+

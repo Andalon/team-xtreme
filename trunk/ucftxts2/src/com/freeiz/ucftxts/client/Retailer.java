@@ -15,6 +15,9 @@ public class Retailer
 	private String mAddress;
 	private String mURL;
 	
+	/**
+	 * Creates an empty Retailer instance
+	 */
 	public Retailer()
 	{
 	}
