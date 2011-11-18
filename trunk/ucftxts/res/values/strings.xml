@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <string name="hello">Hello World, UCFTXTSActivity!</string>
-    <string name="app_name">UCFTXTS</string>
+    <string name="hello">sup world</string>
+    <string name="app_name">UCF TXT Shopper</string>
+    <string name="title">UCF TXT Shopper</string>
+    <string name="team_xtreme">Team Xtreme</string>
+    <string name="search">Search</string>
+    <string name="scan">Scan ISBN</string>
+    <string name="book_isbn">ISBN</string>
+    <string name="book_author">Author</string>
+    <string name="book_title">Title</string>
+    <string name="blank"></string>
+    <string name="book_topic">Topic</string>
+    <color name="ucf_gold">#FFCC9900</color>
 
 </resources>
