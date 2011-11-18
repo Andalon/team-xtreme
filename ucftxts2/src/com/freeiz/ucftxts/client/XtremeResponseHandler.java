@@ -11,5 +11,9 @@ import java.util.*;
  */
 public interface XtremeResponseHandler
 {
+	/**
+	 * Called when the response has been fully received and parsed by the client
+	 * @param books the list of books that match the previously given query parameters
+	 */
 	public abstract void XtremeResponse(Vector<Book> books);
 }

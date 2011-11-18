@@ -16,6 +16,10 @@ import android.util.*;
 import org.xml.sax.*;
 import org.xml.sax.helpers.DefaultHandler; 
 
+import com.freeiz.ucftxts.client.Retailer;
+import com.freeiz.ucftxts.client.Book;
+import com.freeiz.ucftxts.client.XtremeResponseHandler;
+
 /**
  * @author Michael Scherer
  *	Client for interacting with the server, searching for
@@ -31,18 +35,30 @@ public class XtremeClient extends DefaultHandler
 	private StringBuilder mBuilder;
 	private boolean mInUse;
 	
+	/**
+	 * Builds the client with no URL and no handlers
+	 */
 	public XtremeClient()
 	{
 		mURL = "";
 		mHandlers = new Vector<XtremeResponseHandler>();
 	}
 	
+	/**
+	 * Builds the client with a URL and no handlers
+	 * @param url the full URL for the name of the site (and page) that the query is called on
+	 */
 	public XtremeClient(String url)
 	{
 		mURL = url;
 		mHandlers = new Vector<XtremeResponseHandler>();
 	}
 	
+	/**
+	 * Builds the client with a URL and a handler
+	 * @param url the full URL for the name of the site (and page) that the query is called on
+	 * @param handler the object handling the response
+	 */
 	public XtremeClient(String url, XtremeResponseHandler handler)
 	{
 		mURL = url;
@@ -50,26 +66,50 @@ public class XtremeClient extends DefaultHandler
 		mHandlers.add(handler);
 	}
 	
+	/**
+	 * Sets the URL
+	 * @param url the full URL for the name of the site (and page) that the query is called on
+	 */
 	public void SetURL(String url)
 	{
 		mURL = url;
 	}
 	
+	/**
+	 * Gets the URL
+	 * @return the full URL for the name of the site (and page) that the query is called on
+	 */
 	public String GetURL()
 	{
 		return mURL;
 	}
 	
+	/**
+	 * Adds a callback
+	 * @param handler the object handling the request
+	 */
 	public void AddCallback(XtremeResponseHandler handler)
 	{
 		mHandlers.add(handler);
 	}
 	
+	/**
+	 * Removes the specified handler
+	 * @param handler the object handling the request
+	 * @return true if the handler was removed, false if it was not found in the set
+	 */
 	public boolean RemoveCallback(XtremeResponseHandler handler)
 	{
 		return mHandlers.remove(handler);
 	}
 	
+	/**
+	 * Queries the server for book entries that satisfy the given conditions
+	 * @param Author name of the author (name or "")
+	 * @param Title title of the book (title or "")
+	 * @return true if the request was sent, false if it failed to send
+	 * @throws Exception the result of a failure
+	 */
 	public boolean Query(String Author, String Title) throws Exception
 	{
 		if (Author != "" && Title != "")
@@ -82,6 +122,12 @@ public class XtremeClient extends DefaultHandler
 			return false;
 	}
 	
+	/**
+	 * Queries the server for book entries that satisfy the given conditions
+	 * @param ISBN the ISBN code for the book
+	 * @return true if the request was sent, false if it failed to send
+	 * @throws Exception the result of a failure
+	 */
 	public boolean Query(long ISBN) throws Exception
 	{
 		if (ISBN != 0)
@@ -90,6 +136,12 @@ public class XtremeClient extends DefaultHandler
 			return false;
 	}
 	
+	/**
+	 * Takes in a pre-formatted query and actually requests a response from the server
+	 * @param arguments the query
+	 * @return true if the request was sent, false if it failed to send
+	 * @throws Exception the result of a failure
+	 */
 	private boolean FormattedQuery(String arguments) throws Exception
 	{
 		//Vector<Book> books = null;
@@ -135,6 +187,20 @@ public class XtremeClient extends DefaultHandler
 		return true;
 	}
 	
+	/*
+	 <xml>
+		<Book title=”TITLE” author=”AUTHOR” isbn=”XXXXXXXXXXXXX”>
+			<Tag>TAG1</Tag>
+			<Tag>TAG2</Tag>
+			<Tag>TAGN</Tag>
+			<Abstract>BOOK ABSTRACT STRING</Abstract>
+			<Quote price=”XXXX” website=”site.com/dir/page.htm” address=”1234 LOCATION STREET” />
+			<Quote price=”XXXX” website=”retailer.com/blah” address=”1423 LOCATION AVENUE” />
+			<Quote price=”XXXX” website=”gimmemoney.org/1234” address=”1 GIMME MONEY WAY” />
+		</Book>
+	</xml>
+	 */
+	
 	@Override
     public void characters(char[] ch, int start, int length) throws SAXException
     {
@@ -142,8 +208,9 @@ public class XtremeClient extends DefaultHandler
         mBuilder.append(ch, start, length);
     }
 	
+	
 	@Override
-    public void endElement(String uri, String localName, String name) throws SAXException
+	public void endElement(String uri, String localName, String name) throws SAXException
 	{
 		super.endElement(uri, localName, name);
 		
