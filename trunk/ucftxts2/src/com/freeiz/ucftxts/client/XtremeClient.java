@@ -216,6 +216,7 @@ public class XtremeClient extends DefaultHandler
 		}
 		catch (Exception e)
 		{
+			Log.e("XtremeClient", "Query", e);
 			for (XtremeResponseHandler xrh : mHandlers)
 			{
 				//mResults.clear();
