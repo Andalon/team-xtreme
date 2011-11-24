@@ -3,6 +3,8 @@
  */
 package com.freeiz.ucftxts.client;
 
+import java.io.FilterInputStream;
+import java.io.InputStream;
 import java.util.*;
 //import java.io.*;
 
@@ -208,9 +210,8 @@ public class XtremeClient extends DefaultHandler
 			///////////////////////////
 			// Parse XML Here...
 			///////////////////////////
-			 
 			
-			Xml.parse(response.getEntity().getContent(), Xml.Encoding.UTF_8, this);
+			Xml.parse(new XtremeStreamFilter(response.getEntity().getContent()), Xml.Encoding.UTF_8, this);
 			
 			//in.close();
 		}
@@ -266,6 +267,8 @@ public class XtremeClient extends DefaultHandler
 				mCurrentBook.AddTag(mBuilder.toString());
 		}
 		
+		Log.d("Parser", localName + '@' + uri + '=' + mCurrentBook.toString());
+		
 		// if the xml document ends
 		if (localName.equalsIgnoreCase("xml"))
 		{
@@ -294,6 +297,8 @@ public class XtremeClient extends DefaultHandler
 			mCurrentBook.SetTitle(attributes.getValue(uri, "title"));
 			mCurrentBook.SetISBN(Long.parseLong(attributes.getValue(uri, "isbn")));
 			mCurrentBook.SetSubject(attributes.getValue(uri, "subject"));
+			
+			Log.d("Parser", localName + '@' + uri + '=' + mCurrentBook.toString());
 		}
 		else if (localName.equalsIgnoreCase("Quote") && mCurrentBook != null)
 		{
@@ -326,5 +331,29 @@ public class XtremeClient extends DefaultHandler
 		}
 		
 		mInUse = false;
+	}
+	
+	// Receive notification of a recoverable parser error.
+	@Override
+	public void error(SAXParseException e)
+	{
+		// ignore!
+		Log.e("Parser:XtremeClient", "recoverable error claimed");
+	}
+	
+	// Report a fatal XML parsing error.
+	@Override
+	public void fatalError(SAXParseException e)
+	{
+		// ignore!
+		Log.e("Parser:XtremeClient", "fatalError claimed");
+	}
+	
+	@Override
+	public void warning(SAXParseException e) throws SAXException
+	{
+		// TODO Auto-generated method stub
+		Log.e("Parser:XtremeClient", "warning");
+		super.warning(e);
 	}
 }
