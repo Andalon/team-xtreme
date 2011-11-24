@@ -47,7 +47,6 @@ public class Ucftxts2Activity extends Activity implements OnClickListener
     		String mTitle = title.getText().toString();
     		String mTopic = topic.getText().toString();
     		
-    		author.setText("searching...");
     		
     		Intent i = new Intent(this, LoadingActivity.class);
     		Bundle b = new Bundle();
@@ -69,7 +68,6 @@ public class Ucftxts2Activity extends Activity implements OnClickListener
     		//Fire Intent to Barcode Scanner here
     		///////////////
     	}
-    	isbn.setText("done waiting");
     	
     	
     }
