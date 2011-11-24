@@ -4,7 +4,7 @@
 package com.freeiz.ucftxts.client;
 
 import java.util.*;
-import java.io.*;
+//import java.io.*;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -196,7 +196,7 @@ public class XtremeClient extends DefaultHandler
 			mInUse = false;
 		}
 		
-		BufferedReader in = null;
+		//BufferedReader in = null;
 		
 		try
 		{
@@ -217,6 +217,11 @@ public class XtremeClient extends DefaultHandler
 		finally
 		{
 			//in.close();
+			for (XtremeResponseHandler xrh : mHandlers)
+			{
+				//mResults.clear();
+				xrh.XtremeResponse(null);
+			}
 		}
 		
 		return true;
