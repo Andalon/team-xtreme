@@ -5,7 +5,7 @@
 	<RelativeLayout 
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent" >
-	
+	
 	    <EditText
 	        android:id="@+id/editText1"
 	        android:layout_width="300dp"
@@ -14,10 +14,12 @@
 	        android:layout_centerHorizontal="true"
 	        android:layout_marginTop="250dp"
 	        android:hint="@string/book_isbn"
+	        android:inputType="number|numberDecimal"
 	        android:singleLine="true" >
+
 	        <requestFocus />
 	    </EditText>
-	
+	
 	    <EditText
 	        android:id="@+id/editText2"
 	        android:layout_width="wrap_content"
@@ -25,11 +27,11 @@
 	        android:layout_alignLeft="@+id/editText1"
 	        android:layout_alignRight="@+id/editText1"
 	        android:layout_below="@+id/editText1"
-	        android:hint="@string/book_title" >
-	
+	        android:hint="@string/book_title"
+	        android:singleLine="true" >
 	        
 	    </EditText>
-	
+	
 	    <EditText
 	        android:id="@+id/editText3"
 	        android:layout_width="wrap_content"
@@ -37,8 +39,9 @@
 	        android:layout_alignLeft="@+id/editText2"
 	        android:layout_alignRight="@+id/editText2"
 	        android:layout_below="@+id/editText2"
-	        android:hint="@string/book_author" />
-	
+	        android:hint="@string/book_author"
+	        android:singleLine="true" />
+	
 	    <EditText
 	        android:id="@+id/editText4"
 	        android:layout_width="wrap_content"
@@ -46,7 +49,8 @@
 	        android:layout_alignLeft="@+id/editText3"
 	        android:layout_alignRight="@+id/editText3"
 	        android:layout_below="@+id/editText3"
-	        android:hint="@string/book_topic" />
+	        android:hint="@string/book_topic"
+	        android:singleLine="true" />
 	
 	    <Button
 	        android:id="@+id/scanButton"

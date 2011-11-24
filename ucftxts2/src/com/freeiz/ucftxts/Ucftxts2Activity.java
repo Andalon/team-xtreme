@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class Ucftxts2Activity extends Activity implements OnClickListener, XtremeResponseHandler
+public class Ucftxts2Activity extends Activity implements OnClickListener
 {
 	private XtremeClient XClient;
     /** Called when the activity is first created. */
@@ -22,10 +22,6 @@ public class Ucftxts2Activity extends Activity implements OnClickListener, Xtrem
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        
-        //XClient = new XtremeClient(getString(R.string.webURL), this);
-        XClient = new XtremeClient("", this);
-        
         
         Button searchButton = (Button)findViewById(R.id.searchButton);
         searchButton.setOnClickListener(this);
@@ -65,18 +61,6 @@ public class Ucftxts2Activity extends Activity implements OnClickListener, Xtrem
     		i.putExtras(b);   		
     		startActivity(i);
     		
-    		
-    		
-    		/*try {
-    			setContentView(R.layout.loading);
-				XClient.Query(mAuthor, mTitle);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				//setContentView(R.layout.main);
-				isbn.setText("ERROR");
-				e.printStackTrace();
-			}*/
-    		
     	}
     	else if(v.equals((Button)findViewById(R.id.scanButton)))
     	{
@@ -90,23 +74,4 @@ public class Ucftxts2Activity extends Activity implements OnClickListener, Xtrem
     	
     }
     
-    public void waitForQuery()
-    {
-
-    }
-    
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-    	
-    }
-    
-
-	@Override
-	public void XtremeResponse(Vector<Book> books) 
-	{
-		//setContentView(R.layout.main); //TESTING PURPOSES ONLY
-		EditText topic = (EditText)findViewById(R.id.editText4);
-		topic.setText("Response Fired!");
-		//setContentView(R.layout.results)
-	}
 }
