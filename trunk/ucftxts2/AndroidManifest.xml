@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
         <activity
-        	android:name=".LoadingActivity" >
+        	android:name=".LoadingActivity" 
+        	android:noHistory="true" >
         </activity>
         <activity
             android:name=".ResultsActivity" >

@@ -5,10 +5,10 @@
 	<RelativeLayout 
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent" >
-	
+	
 	    <EditText
 	        android:id="@+id/editText1"
-	        android:layout_width="300dp"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentTop="true"
 	        android:layout_centerHorizontal="true"
@@ -17,7 +17,6 @@
 	        android:inputType="number|numberDecimal"
 	        android:singleLine="true" >
 
-	        <requestFocus />
 	    </EditText>
 	
 	    <EditText
