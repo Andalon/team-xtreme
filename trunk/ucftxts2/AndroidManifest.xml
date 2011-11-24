@@ -21,6 +21,9 @@
         <activity
         	android:name=".LoadingActivity" >
         </activity>
+        <activity
+            android:name=".ResultsActivity" >
+        </activity>
     </application>
 
 </manifest>
