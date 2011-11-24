@@ -41,11 +41,12 @@ public class Ucftxts2Activity extends Activity implements OnClickListener, Xtrem
     	EditText author = (EditText)findViewById(R.id.editText3);
     	EditText topic = (EditText)findViewById(R.id.editText4);
     	
-    	isbn.setText("Doing nothing");
-    	
     	if(v.equals((Button)findViewById(R.id.searchButton)))
     	{
-    		long mIsbn = Long.parseLong(isbn.getText().toString());
+    		long mIsbn = 0;
+    		if(!(isbn.getText().toString()).equals("")) //make sure we're not trying to parse an empty string
+    			mIsbn = Long.parseLong(isbn.getText().toString());
+    		
     		String mAuthor = author.getText().toString();
     		String mTitle = title.getText().toString();
     		String mTopic = topic.getText().toString();
