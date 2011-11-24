@@ -214,14 +214,17 @@ public class XtremeClient extends DefaultHandler
 			
 			//in.close();
 		}
-		finally
+		catch (Exception e)
 		{
-			//in.close();
 			for (XtremeResponseHandler xrh : mHandlers)
 			{
 				//mResults.clear();
 				xrh.XtremeResponse(null);
 			}
+		}
+		finally
+		{
+			//in.close();
 		}
 		
 		return true;
