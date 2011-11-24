@@ -23,7 +23,7 @@ public class LoadingActivity extends Activity implements XtremeResponseHandler
 		
 		Bundle b = getIntent().getExtras();
 		
-		XClient = new XtremeClient("", this);
+		XClient = new XtremeClient(this.getString(R.string.webURL), this);
 		
 		startQuery(b);
 	}
@@ -35,11 +35,11 @@ public class LoadingActivity extends Activity implements XtremeResponseHandler
 		String mTitle = b.getString("title");
 		String mTopic = b.getString("topic");
 		
-		
-		
-		
 		try {
-			XClient.Query(mAuthor, mTitle, mTopic);
+			if(mIsbn==0)
+				XClient.Query(mAuthor, mTitle, mTopic);
+			else
+				XClient.Query(mIsbn);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,5 +54,7 @@ public class LoadingActivity extends Activity implements XtremeResponseHandler
 		Intent i = new Intent(this, ResultsActivity.class);
 		Bundle b = new Bundle();
 		
+		b.putSerializable("books", books);
+		startActivity(i);
 	}
 }
