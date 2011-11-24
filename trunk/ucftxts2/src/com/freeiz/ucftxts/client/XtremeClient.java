@@ -265,9 +265,14 @@ public class XtremeClient extends DefaultHandler
 				mCurrentBook.SetAbstract(mBuilder.toString());
 			else if (localName.equalsIgnoreCase("tag"))
 				mCurrentBook.AddTag(mBuilder.toString());
+			else if (localName.equalsIgnoreCase("book"))
+			{
+				mResults.add(mCurrentBook);
+				Log.d("Parser", mCurrentBook.toString());
+			}
 		}
 		
-		Log.d("Parser", localName + '@' + uri + '=' + mCurrentBook.toString());
+		//Log.d("Parser", localName + '@' + uri + '=' + mCurrentBook.toString());
 		
 		// if the xml document ends
 		if (localName.equalsIgnoreCase("xml"))
@@ -298,7 +303,7 @@ public class XtremeClient extends DefaultHandler
 			mCurrentBook.SetISBN(Long.parseLong(attributes.getValue(uri, "isbn")));
 			mCurrentBook.SetSubject(attributes.getValue(uri, "subject"));
 			
-			Log.d("Parser", localName + '@' + uri + '=' + mCurrentBook.toString());
+			//Log.d("Parser", localName + '@' + uri + '=' + mCurrentBook.toString());
 		}
 		else if (localName.equalsIgnoreCase("Quote") && mCurrentBook != null)
 		{
