@@ -110,14 +110,49 @@ public class XtremeClient extends DefaultHandler
 	 * @return true if the request was sent, false if it failed to send
 	 * @throws Exception the result of a failure
 	 */
-	public boolean Query(String Author, String Title) throws Exception
+	public boolean Query(String Author, String Title, String Subject) throws Exception
 	{
-		if (Author != "" && Title != "")
-			return FormattedQuery(String.format("author=%s&title=%s", Author, Title));
-		else if (Author != "")
-			return FormattedQuery(String.format("author=%s", Author));
+		String fname="",lname="";
+		if (Author != "")
+		{
+			String[] s = Author.split(" ");
+			if (s.length > 1)
+			{
+				lname = s[s.length-1];
+				for (int i=0; i<s.length-1; i++)
+				{
+					fname += s[i] + ' ';
+				}
+				fname.substring(0, fname.length()-2);
+			}
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		
+		if (Author != "")
+		{
+			sb.append("fname=");
+			sb.append(fname);
+			sb.append('&');
+			sb.append("lname=");
+			sb.append(lname);
+			sb.append('&');
+		}
 		else if (Title != "")
-			return FormattedQuery(String.format("title=%s", Title));
+		{
+			sb.append("title=");
+			sb.append(Title);
+			sb.append('&');
+		}
+		else if (Subject != "")
+		{
+			sb.append("subject=");
+			sb.append(Subject);
+			sb.append('&');
+		}
+		
+		if (sb.length() > 0)
+			return FormattedQuery(sb.toString());
 		else
 			return false;
 	}
@@ -130,7 +165,7 @@ public class XtremeClient extends DefaultHandler
 	 */
 	public boolean Query(long ISBN) throws Exception
 	{
-		if (ISBN != 0)
+		if (ISBN > 0)
 			return FormattedQuery(String.format("isbn=%13d", ISBN));
 		else
 			return false;
@@ -234,7 +269,8 @@ public class XtremeClient extends DefaultHandler
 		{
 			mCurrentBook = new Book();
 			
-			mCurrentBook.SetAuthor(attributes.getValue(uri, "author"));
+			mCurrentBook.SetFirstName(attributes.getValue(uri, "fname"));
+			mCurrentBook.SetLastName(attributes.getValue(uri, "lname"));
 			mCurrentBook.SetTitle(attributes.getValue(uri, "title"));
 			mCurrentBook.SetISBN(Long.parseLong(attributes.getValue(uri, "isbn")));
 		}
