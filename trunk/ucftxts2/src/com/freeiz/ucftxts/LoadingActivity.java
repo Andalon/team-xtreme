@@ -7,6 +7,7 @@ import com.freeiz.ucftxts.client.XtremeClient;
 import com.freeiz.ucftxts.client.XtremeResponseHandler;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -20,33 +21,38 @@ public class LoadingActivity extends Activity implements XtremeResponseHandler
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.loading);
 		
+		Bundle b = getIntent().getExtras();
+		
 		XClient = new XtremeClient("", this);
 		
-		startQuery();
-		
-		
+		startQuery(b);
 	}
 	
-	private void startQuery()
+	private void startQuery(Bundle b)
 	{
-		String mAuthor="";
-		String mTitle="";
+		long mIsbn = b.getLong("isbn");
+		String mAuthor = b.getString("author");
+		String mTitle = b.getString("title");
+		String mTopic = b.getString("topic");
+		
 		
 		
 		
 		try {
-			XClient.Query(mAuthor, mTitle);
+			XClient.Query(mAuthor, mTitle, mTopic);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			
 		}
 	}
 
 	@Override
-	public void XtremeResponse(Vector<Book> books) {
+	public void XtremeResponse(Vector<Book> books) 
+	{
 		// TODO Auto-generated method stub
+		
+		Intent i = new Intent(this, ResultsActivity.class);
+		Bundle b = new Bundle();
 		
 	}
 }
