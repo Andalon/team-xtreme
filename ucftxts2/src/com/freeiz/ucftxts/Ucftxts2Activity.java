@@ -45,13 +45,24 @@ public class Ucftxts2Activity extends Activity implements OnClickListener, Xtrem
     	
     	if(v.equals((Button)findViewById(R.id.searchButton)))
     	{
+    		long mIsbn = Long.parseLong(isbn.getText().toString());
     		String mAuthor = author.getText().toString();
     		String mTitle = title.getText().toString();
+    		String mTopic = topic.getText().toString();
     		
     		author.setText("searching...");
     		
     		Intent i = new Intent(this, LoadingActivity.class);
-    		startActivityForResult(i, 0);
+    		Bundle b = new Bundle();
+    		
+    		b.putLong("isbn", mIsbn);
+    		b.putString("author", mAuthor);
+    		b.putString("title", mTitle);
+    		b.putString("topic", mTopic);
+    		
+    		
+    		i.putExtras(b);   		
+    		startActivity(i);
     		
     		
     		
@@ -82,6 +93,12 @@ public class Ucftxts2Activity extends Activity implements OnClickListener, Xtrem
     {
 
     }
+    
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+    	
+    }
+    
 
 	@Override
 	public void XtremeResponse(Vector<Book> books) 
