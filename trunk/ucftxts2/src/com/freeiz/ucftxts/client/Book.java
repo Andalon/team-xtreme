@@ -22,10 +22,11 @@ public class Book
 		this.mTags = new Vector<String>();
 	}
 	
-	public Book(long isbn, String author, String title, String _abstract)
+	public Book(long isbn, String fname, String lname, String title, String _abstract)
 	{
 		this.mISBN = isbn;
-		this.mAuthor = author;
+		this.mFName = fname;
+		this.mLName = lname;
 		this.mTitle = title;
 		this.mAbstract = _abstract;
 		
@@ -43,14 +44,24 @@ public class Book
 		return mTags.add(tag);
 	}
 	
-	public String GetAuthor()
+	public String GetFirstName()
 	{
-		return mAuthor;
+		return mFName;
 	}
 	
-	public void SetAuthor(String author)
+	public void SetFirstName(String fname)
 	{
-		mAuthor = author;
+		mFName = fname;
+	}
+	
+	public String GetLastName()
+	{
+		return mLName;
+	}
+	
+	public void SetLastName(String lname)
+	{
+		mLName = lname;
 	}
 	
 	public String GetTitle()
@@ -83,7 +94,8 @@ public class Book
 		mISBN = isbn;
 	}
 	
-	private String mAuthor;
+	private String mFName;
+	private String mLName;
 	private String mTitle;
 	private String mAbstract;
 	private long mISBN;
