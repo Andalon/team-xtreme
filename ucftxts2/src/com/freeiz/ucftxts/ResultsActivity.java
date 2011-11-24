@@ -1,25 +1,29 @@
 package com.freeiz.ucftxts;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
 
 import com.freeiz.ucftxts.client.Book;
 import com.freeiz.ucftxts.client.XtremeResponseHandler;
 
 
-public class ResultsActivity extends Activity implements OnClickListener, XtremeResponseHandler
+public class ResultsActivity extends ListActivity implements OnClickListener, XtremeResponseHandler
 {
+	ArrayList<String> list;
+	ArrayAdapter<Book> a;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-        setContentView(R.layout.results);
+        //setContentView(R.layout.results);
         
+		//Vector<Book> books = (Vector<Book>) savedInstanceState.getSerializable("books");
         
 	}
 	
@@ -29,15 +33,18 @@ public class ResultsActivity extends Activity implements OnClickListener, Xtreme
 		// TODO Auto-generated method stub
 		
 		StringBuilder sb = new StringBuilder();
+		for(int i=0; i<9; i++)
+			sb.append("asdadadasdadasdasd\n");
 		for(Book b: books)
 		{
 			sb.append(b.toString());
 			sb.append("\r\n");
 		}
+	
 		
-		TextView mTV = new TextView(this);
+		a = new ArrayAdapter<Book>(this, android.R.layout.simple_list_item_1, books);
+        setListAdapter(a);
 		
-        mTV.setText(sb.toString());
 	}
 
 	@Override
