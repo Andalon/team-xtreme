@@ -273,6 +273,7 @@ public class XtremeClient extends DefaultHandler
 			mCurrentBook.SetLastName(attributes.getValue(uri, "lname"));
 			mCurrentBook.SetTitle(attributes.getValue(uri, "title"));
 			mCurrentBook.SetISBN(Long.parseLong(attributes.getValue(uri, "isbn")));
+			mCurrentBook.SetSubject(attributes.getValue(uri, "subject"));
 		}
 		else if (localName.equalsIgnoreCase("Quote") && mCurrentBook != null)
 		{

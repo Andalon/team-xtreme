@@ -94,10 +94,21 @@ public class Book
 		mISBN = isbn;
 	}
 	
+	public String GetSubject()
+	{
+		return mSubject;
+	}
+	
+	public void SetSubject(String subject)
+	{
+		mSubject = subject;
+	}
+	
 	private String mFName;
 	private String mLName;
 	private String mTitle;
 	private String mAbstract;
+	private String mSubject;
 	private long mISBN;
 	
 	private Vector<String> mTags;
