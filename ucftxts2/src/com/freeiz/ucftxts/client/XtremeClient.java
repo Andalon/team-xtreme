@@ -217,11 +217,11 @@ public class XtremeClient extends DefaultHandler
 		catch (Exception e)
 		{
 			Log.e("XtremeClient", "Query", e);
-			for (XtremeResponseHandler xrh : mHandlers)
+			/*for (XtremeResponseHandler xrh : mHandlers)
 			{
 				//mResults.clear();
 				xrh.XtremeResponse(null);
-			}
+			}*/
 		}
 		finally
 		{
@@ -264,6 +264,17 @@ public class XtremeClient extends DefaultHandler
 				mCurrentBook.SetAbstract(mBuilder.toString());
 			else if (localName.equalsIgnoreCase("tag"))
 				mCurrentBook.AddTag(mBuilder.toString());
+		}
+		
+		// if the xml document ends
+		if (localName.equalsIgnoreCase("xml"))
+		{
+			for (XtremeResponseHandler xrh : mHandlers)
+			{
+				xrh.XtremeResponse(mResults);
+			}
+			
+			mInUse = false;
 		}
 		
 		mBuilder.setLength(0);
