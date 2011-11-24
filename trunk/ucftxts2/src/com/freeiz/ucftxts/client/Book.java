@@ -4,6 +4,8 @@
 package com.freeiz.ucftxts.client;
 
 import com.freeiz.ucftxts.client.Retailer;
+
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -11,8 +13,13 @@ import java.util.*;
  *	Class for holding information about a book, including author,
  *	ISBN, title, abstract, and prices
  */
-public class Book
+public class Book implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 234550827802557253L;
+	
 	/**
 	 * Creates an empty book instance
 	 */
@@ -102,6 +109,12 @@ public class Book
 	public void SetSubject(String subject)
 	{
 		mSubject = subject;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "t=" + mTitle + " fn=" + mFName + " ln=" + mLName + " s=" + mSubject + " isbn=" + mISBN;
 	}
 	
 	private String mFName;
