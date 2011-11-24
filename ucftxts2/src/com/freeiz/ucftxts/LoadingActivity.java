@@ -52,7 +52,7 @@ public class LoadingActivity extends Activity implements XtremeResponseHandler
 		// TODO Auto-generated method stub
 		
 		Intent i = new Intent(this, ResultsActivity.class);
-		/Intent i = new Intent(this, Ucftxts2Activity.class);
+		//Intent i = new Intent(this, Ucftxts2Activity.class);
 		Bundle b = new Bundle();
 		
 		b.putSerializable("books", books);

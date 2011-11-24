@@ -26,7 +26,6 @@ public final class R {
         public static final int scanButton=0x7f060005;
         public static final int searchButton=0x7f060006;
         public static final int tableLayout1=0x7f06000a;
-        public static final int tableRow1=0x7f06000b;
         public static final int textView1=0x7f060009;
         public static final int textView2=0x7f060008;
     }
