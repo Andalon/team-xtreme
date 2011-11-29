@@ -309,6 +309,7 @@ public class XtremeClient extends DefaultHandler
 		{
 			Retailer r = new Retailer();
 			
+			r.SetName(attributes.getValue(uri, "name"));
 			r.SetAddress(attributes.getValue(uri, "address"));
 			r.SetURL(attributes.getValue(uri, "website"));
 			r.SetPrice(Double.parseDouble(attributes.getValue(uri, "price")));
