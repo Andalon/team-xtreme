@@ -61,17 +61,7 @@ public class LoadingActivity extends Activity implements XtremeResponseHandler
 		
 		b.putSerializable("books", books);
 		
-		Vector<String> test = new Vector<String>();
-		test.add("test1");
-		test.add("test2");
-		test.add("test3");
-	
-		b.putSerializable("test", (Serializable)test);
-		
-		b.putString("WHAT", "HOLY CRAP");
-		
 		i.putExtras(b);
-		//i.putExtra("books", books);
 		
 		startActivity(i);
 	}
