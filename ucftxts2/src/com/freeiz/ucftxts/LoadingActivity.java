@@ -1,6 +1,7 @@
 package com.freeiz.ucftxts;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import android.app.Activity;
@@ -48,7 +49,7 @@ public class LoadingActivity extends Activity implements XtremeResponseHandler
 	}
 
 	@Override
-	public void XtremeResponse(Vector<Book> books) 
+	public void XtremeResponse(ArrayList<Book> books) 
 	{
 		// TODO Auto-generated method stub
 		
@@ -58,7 +59,7 @@ public class LoadingActivity extends Activity implements XtremeResponseHandler
 		
 		//b.put("books", books);
 		
-		b.putSerializable("books", (Serializable)books);
+		b.putSerializable("books", books);
 		
 		Vector<String> test = new Vector<String>();
 		test.add("test1");
