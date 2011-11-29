@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tableLayout1"
-    android:orientation="vertical"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/results_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
-	<Button
-		android:id="@+id/addBtn"
-		android:text="Add New Item"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:onClick="addItems"/>
         
-    <ListView
+     <ListView
         android:id="@+android:id/list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:drawSelectorOnTop="false" />
     
-</LinearLayout>
+</TableLayout>
 
