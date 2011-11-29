@@ -30,9 +30,9 @@ import com.freeiz.ucftxts.client.XtremeResponseHandler;
 public class XtremeClient extends DefaultHandler 
 {
 	private String mURL;
-	private Vector<XtremeResponseHandler> mHandlers;
+	private ArrayList<XtremeResponseHandler> mHandlers;
 	
-	private Vector<Book> mResults;
+	private ArrayList<Book> mResults;
 	private Book mCurrentBook;
 	private StringBuilder mBuilder;
 	private boolean mInUse;
@@ -43,7 +43,7 @@ public class XtremeClient extends DefaultHandler
 	public XtremeClient()
 	{
 		mURL = "";
-		mHandlers = new Vector<XtremeResponseHandler>();
+		mHandlers = new ArrayList<XtremeResponseHandler>();
 	}
 	
 	/**
@@ -53,7 +53,7 @@ public class XtremeClient extends DefaultHandler
 	public XtremeClient(String url)
 	{
 		mURL = url;
-		mHandlers = new Vector<XtremeResponseHandler>();
+		mHandlers = new ArrayList<XtremeResponseHandler>();
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public class XtremeClient extends DefaultHandler
 	public XtremeClient(String url, XtremeResponseHandler handler)
 	{
 		mURL = url;
-		mHandlers = new Vector<XtremeResponseHandler>();
+		mHandlers = new ArrayList<XtremeResponseHandler>();
 		mHandlers.add(handler);
 	}
 	
@@ -181,14 +181,14 @@ public class XtremeClient extends DefaultHandler
 	 */
 	private boolean FormattedQuery(String arguments) throws Exception
 	{
-		//Vector<Book> books = null;
+		//ArrayList<Book> books = null;
 		if (mInUse)
 			return false;
 		mInUse = true;
 		
 		if (mURL == "")
 		{
-			mResults = new Vector<Book>();
+			mResults = new ArrayList<Book>();
 			mResults.add(new Book());
 			for (XtremeResponseHandler xrh : mHandlers)
 			{
@@ -321,7 +321,7 @@ public class XtremeClient extends DefaultHandler
     public void startDocument() throws SAXException
     {
         super.startDocument();
-        mResults = new Vector<Book>();
+        mResults = new ArrayList<Book>();
         mBuilder = new StringBuilder();
     }
 	
