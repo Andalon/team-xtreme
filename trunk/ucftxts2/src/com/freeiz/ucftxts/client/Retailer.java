@@ -3,13 +3,19 @@
  */
 package com.freeiz.ucftxts.client;
 
+import java.io.Serializable;
+
 /**
  * @author Michael Scherer
  *	Class containing all the information about a given
  *	retailer, the price that they offer, their location
  */
-public class Retailer
+public class Retailer implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2533494878586476310L;
 	private String mName;
 	private double mPrice;
 	private String mAddress;
