@@ -25,8 +25,8 @@ public class Book implements Serializable
 	 */
 	public Book()
 	{
-		this.mRetailers = new Vector<Retailer>();
-		this.mTags = new Vector<String>();
+		this.mRetailers = new ArrayList<Retailer>();
+		this.mTags = new ArrayList<String>();
 	}
 	
 	public Book(long isbn, String fname, String lname, String title, String _abstract)
@@ -37,13 +37,18 @@ public class Book implements Serializable
 		this.mTitle = title;
 		this.mAbstract = _abstract;
 		
-		this.mRetailers = new Vector<Retailer>();
-		this.mTags = new Vector<String>();
+		this.mRetailers = new ArrayList<Retailer>();
+		this.mTags = new ArrayList<String>();
 	}
 	
 	public boolean AddRetailer(Retailer retailer)
 	{
 		return mRetailers.add(retailer);
+	}
+	
+	public List<Retailer> GetRetailers()
+	{
+		return mRetailers;
 	}
 	
 	public boolean AddTag(String tag)
@@ -124,6 +129,6 @@ public class Book implements Serializable
 	private String mSubject;
 	private long mISBN;
 	
-	private Vector<String> mTags;
-	private Vector<Retailer> mRetailers;
+	private ArrayList<String> mTags;
+	private ArrayList<Retailer> mRetailers;
 }
