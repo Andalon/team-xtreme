@@ -67,6 +67,7 @@ public class Ucftxts2Activity extends Activity implements OnClickListener
     		//Scan Barcode
     		//Fire Intent to Barcode Scanner here
     		///////////////
+    		
     	}
     	
     	

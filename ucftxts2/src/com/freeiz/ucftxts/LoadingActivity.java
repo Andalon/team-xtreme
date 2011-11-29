@@ -1,14 +1,15 @@
 package com.freeiz.ucftxts;
 
+import java.io.Serializable;
 import java.util.Vector;
-
-import com.freeiz.ucftxts.client.Book;
-import com.freeiz.ucftxts.client.XtremeClient;
-import com.freeiz.ucftxts.client.XtremeResponseHandler;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.freeiz.ucftxts.client.Book;
+import com.freeiz.ucftxts.client.XtremeClient;
+import com.freeiz.ucftxts.client.XtremeResponseHandler;
 
 
 public class LoadingActivity extends Activity implements XtremeResponseHandler
@@ -52,10 +53,25 @@ public class LoadingActivity extends Activity implements XtremeResponseHandler
 		// TODO Auto-generated method stub
 		
 		Intent i = new Intent(this, ResultsActivity.class);
-		//Intent i = new Intent(this, Ucftxts2Activity.class);
+		
 		Bundle b = new Bundle();
 		
-		b.putSerializable("books", books);
+		//b.put("books", books);
+		
+		b.putSerializable("books", (Serializable)books);
+		
+		Vector<String> test = new Vector<String>();
+		test.add("test1");
+		test.add("test2");
+		test.add("test3");
+	
+		b.putSerializable("test", (Serializable)test);
+		
+		b.putString("WHAT", "HOLY CRAP");
+		
+		i.putExtras(b);
+		//i.putExtra("books", books);
+		
 		startActivity(i);
 	}
 }
