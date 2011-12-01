@@ -3,6 +3,8 @@ package com.freeiz.ucftxts;
 import java.util.Vector;
 
 import com.freeiz.ucftxts.client.*;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -67,10 +69,26 @@ public class Ucftxts2Activity extends Activity implements OnClickListener
     		//Scan Barcode
     		//Fire Intent to Barcode Scanner here
     		///////////////
+    		IntentIntegrator integrator = new IntentIntegrator(this);
+    		integrator.initiateScan();
     		
     	}
     	
     	
     }
+    
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    	  IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+    	  if (scanResult != null) {
+    	    Long mISBN = Long.parseLong(scanResult.getContents());
+    	    Bundle b = new Bundle();
+    	    b.putLong("isbn", mISBN);
+    	    Intent i = new Intent(this, LoadingActivity.class);
+    	    i.putExtras(b);
+    	    startActivity(i);
+    	  }
+    	  // else continue with any other code you need in the method
+    	  
+    	}
     
 }
