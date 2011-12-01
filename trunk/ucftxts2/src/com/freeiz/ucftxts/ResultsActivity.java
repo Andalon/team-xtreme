@@ -56,8 +56,7 @@ public class ResultsActivity extends ListActivity
 		else
 		{
 			Toast.makeText(this, "No items found!", Toast.LENGTH_LONG);
-			Intent i = new Intent(this, Ucftxts2Activity.class);
-			startActivity(i);
+			Log.e("mBooks", "mBooks is empty, yo");
 		}
 		
 	}
