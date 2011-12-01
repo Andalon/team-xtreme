@@ -127,6 +127,10 @@ public class XtremeClient extends DefaultHandler
 				}
 				fname.substring(0, fname.length()-2);
 			}
+			else if (s.length == 1)
+			{
+				lname = s[0];
+			}
 		}
 		
 		StringBuilder sb = new StringBuilder();
@@ -134,22 +138,24 @@ public class XtremeClient extends DefaultHandler
 		if (Author != "")
 		{
 			sb.append("fname=");
-			sb.append(fname);
+			sb.append(fname.trim());
 			sb.append('&');
 			sb.append("lname=");
-			sb.append(lname);
+			sb.append(lname.trim());
 			sb.append('&');
 		}
-		else if (Title != "")
+		
+		if (Title != "")
 		{
 			sb.append("title=");
-			sb.append(Title);
+			sb.append(Title.trim());
 			sb.append('&');
 		}
-		else if (Subject != "")
+		
+		if (Subject != "")
 		{
 			sb.append("subject=");
-			sb.append(Subject);
+			sb.append(Subject.trim());
 			sb.append('&');
 		}
 		
@@ -182,6 +188,8 @@ public class XtremeClient extends DefaultHandler
 	private boolean FormattedQuery(String arguments) throws Exception
 	{
 		//ArrayList<Book> books = null;
+		arguments = arguments.replaceAll(" ", "%20");
+		
 		if (mInUse)
 			return false;
 		mInUse = true;
@@ -203,7 +211,8 @@ public class XtremeClient extends DefaultHandler
 		try
 		{
 			HttpClient client = new DefaultHttpClient();
-			HttpGet request = new HttpGet(mURL);
+			HttpGet request = new HttpGet(mURL + "?" + arguments);
+			Log.i("XtremeClient", mURL + "?" + arguments);
 			
 			HttpResponse response = client.execute(request);
 			
@@ -232,19 +241,7 @@ public class XtremeClient extends DefaultHandler
 		return true;
 	}
 	
-	/*
-	 <xml>
-		<Book title=”TITLE” author=”AUTHOR” isbn=”XXXXXXXXXXXXX”>
-			<Tag>TAG1</Tag>
-			<Tag>TAG2</Tag>
-			<Tag>TAGN</Tag>
-			<Abstract>BOOK ABSTRACT STRING</Abstract>
-			<Quote price=”XXXX” website=”site.com/dir/page.htm” address=”1234 LOCATION STREET” />
-			<Quote price=”XXXX” website=”retailer.com/blah” address=”1423 LOCATION AVENUE” />
-			<Quote price=”XXXX” website=”gimmemoney.org/1234” address=”1 GIMME MONEY WAY” />
-		</Book>
-	</xml>
-	 */
+	
 	
 	@Override
     public void characters(char[] ch, int start, int length) throws SAXException
