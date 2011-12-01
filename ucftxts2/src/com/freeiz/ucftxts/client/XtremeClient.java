@@ -174,7 +174,7 @@ public class XtremeClient extends DefaultHandler
 	public boolean Query(long ISBN) throws Exception
 	{
 		if (ISBN > 0)
-			return FormattedQuery(String.format("isbn=%13d", ISBN));
+			return FormattedQuery(String.format("isbn=%013d", ISBN));
 		else
 			return false;
 	}
