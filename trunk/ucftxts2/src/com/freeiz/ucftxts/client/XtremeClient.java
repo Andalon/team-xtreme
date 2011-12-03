@@ -3,10 +3,7 @@
  */
 package com.freeiz.ucftxts.client;
 
-import java.io.FilterInputStream;
-import java.io.InputStream;
 import java.util.*;
-//import java.io.*;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -114,6 +111,8 @@ public class XtremeClient extends DefaultHandler
 	 */
 	public boolean Query(String Author, String Title, String Subject) throws Exception
 	{
+		// if the Author string is not empty, then parse out <Firstname> <Lastname>
+		//	if it's only a single word, assume it's a last name
 		String fname="",lname="";
 		if (Author != "")
 		{
@@ -206,23 +205,20 @@ public class XtremeClient extends DefaultHandler
 			mInUse = false;
 		}
 		
-		//BufferedReader in = null;
-		
 		try
 		{
+			
+			// Make a connection to the server
 			HttpClient client = new DefaultHttpClient();
 			HttpGet request = new HttpGet(mURL + "?" + arguments);
 			Log.i("XtremeClient", mURL + "?" + arguments);
 			
 			HttpResponse response = client.execute(request);
 			
-			///////////////////////////
 			// Parse XML Here...
-			///////////////////////////
-			
 			Xml.parse(new XtremeStreamFilter(response.getEntity().getContent()), Xml.Encoding.UTF_8, this);
 			
-			//in.close();
+			
 		}
 		catch (Exception e)
 		{
@@ -233,16 +229,16 @@ public class XtremeClient extends DefaultHandler
 				xrh.XtremeResponse(null);
 			}*/
 		}
-		finally
-		{
-			//in.close();
-		}
 		
 		return true;
 	}
 	
-	
-	
+	/**
+	 * Gets called by the XML parser whenever text occurs between an opening and closing xml tag
+	 * @param ch the characters read in
+	 * @param start the starting index in the ch buffer
+	 * @param length the length of the data in the ch buffer
+	 */
 	@Override
     public void characters(char[] ch, int start, int length) throws SAXException
     {
@@ -250,7 +246,12 @@ public class XtremeClient extends DefaultHandler
         mBuilder.append(ch, start, length);
     }
 	
-	
+	/**
+	 * Called by the XML parser when a closing tag is encountered
+	 * @param uri the full path of the xml tag
+	 * @param localName the name of the tag
+	 * @param name the fully qualified name of the tag
+	 */
 	@Override
 	public void endElement(String uri, String localName, String name) throws SAXException
 	{
@@ -285,11 +286,19 @@ public class XtremeClient extends DefaultHandler
 		mBuilder.setLength(0);
 	}
 	
+	/**
+	 * Called when the beginning of a tag is encountered
+	 * @param uri the full path of the xml tag
+	 * @param localName the name of the tag
+	 * @param name the fully qualified name of the tag
+	 * @param attributes the attributes associated with the tag
+	 */
 	@Override
     public void startElement(String uri, String localName, String name, Attributes attributes) throws SAXException
     {
 		super.startElement(uri, localName, name, attributes);
 		
+		// If it's a book tag, create a new book
 		if (localName.equalsIgnoreCase("Book"))
 		{
 			mCurrentBook = new Book();
@@ -302,6 +311,7 @@ public class XtremeClient extends DefaultHandler
 			
 			//Log.d("Parser", localName + '@' + uri + '=' + mCurrentBook.toString());
 		}
+		// If it's a book tag, add a retailer to the list for the current book
 		else if (localName.equalsIgnoreCase("Quote") && mCurrentBook != null)
 		{
 			Retailer r = new Retailer();
@@ -315,6 +325,9 @@ public class XtremeClient extends DefaultHandler
 		}
     }
 	
+	/**
+	 * Called when the xml document starts
+	 */
 	@Override
     public void startDocument() throws SAXException
     {
@@ -323,11 +336,15 @@ public class XtremeClient extends DefaultHandler
         mBuilder = new StringBuilder();
     }
 	
+	/**
+	 * Called when the xml document ends
+	 */
 	@Override
 	public void endDocument() throws SAXException
 	{
 		super.endDocument();
 		
+		// Let all the callbacks know that a result has finished
 		for (XtremeResponseHandler xrh : mHandlers)
 		{
 			xrh.XtremeResponse(mResults);
@@ -336,7 +353,10 @@ public class XtremeClient extends DefaultHandler
 		mInUse = false;
 	}
 	
-	// Receive notification of a recoverable parser error.
+	/**
+	 * Receive notification of a recoverable parser error.
+	 * @param e the error
+	 */
 	@Override
 	public void error(SAXParseException e)
 	{
@@ -344,7 +364,10 @@ public class XtremeClient extends DefaultHandler
 		Log.e("Parser:XtremeClient", "recoverable error claimed");
 	}
 	
-	// Report a fatal XML parsing error.
+	/**
+	 * Report a fatal XML parsing error.
+	 * @param e the error
+	 */
 	@Override
 	public void fatalError(SAXParseException e)
 	{
@@ -352,6 +375,10 @@ public class XtremeClient extends DefaultHandler
 		Log.e("Parser:XtremeClient", "fatalError claimed");
 	}
 	
+	/**
+	 * Report a warning
+	 * @param e the warning
+	 */
 	@Override
 	public void warning(SAXParseException e) throws SAXException
 	{

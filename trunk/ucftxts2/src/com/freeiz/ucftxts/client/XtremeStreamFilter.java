@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.freeiz.ucftxts.client;
 
 import java.io.FilterInputStream;
@@ -11,8 +9,9 @@ import org.apache.http.util.EncodingUtils;
 
 
 /**
- * @author michael
- *
+ * @author Michael Scherer
+ *	This is to compensate for the free web server we have which adds info after the </xml> tag.
+ *	NOTE: Assumes UTF-8 encoding
  */
 public class XtremeStreamFilter extends FilterInputStream
 {
@@ -23,6 +22,10 @@ public class XtremeStreamFilter extends FilterInputStream
 	
 	private final char mEndOfTransmission = '\u0004';
 	
+	/**
+	 * Creates the filter
+	 * @param in the input stream
+	 */
 	protected XtremeStreamFilter(InputStream in)
 	{
 		super(in);
@@ -32,6 +35,10 @@ public class XtremeStreamFilter extends FilterInputStream
 		mDone = false;
 	}
 	
+	/**
+	 * Reads in a single int
+	 * @return the read in int, or -1 if the stream ended
+	 */
 	@Override
 	public int read() throws IOException
 	{
@@ -48,36 +55,19 @@ public class XtremeStreamFilter extends FilterInputStream
 		if (mPos >= mEndBytes.length)
 			mDone = true;
 		
-		return val;//*/
-		
-		/*
-		int val = super.read();
-		if (val == mEndOfTransmission)
-			return -1;
-		else
-			return val;//*/
+		return val;
 	}
 	
+	/**
+	 * Reads in an array of bytes
+	 * @param buffer the data to be read in
+	 * @param offset the starting point in the buffer
+	 * @param count the number of elements to read in the buffer
+	 * @return the number of bytes read, or -1 if none
+	 */
 	@Override
 	public int read(byte[] buffer, int offset, int count) throws IOException
-	{/*
-		int result = super.read(buffer, offset, count);
-		if (result == -1)
-			return -1;
-		
-		boolean done=false;
-		for (int i=offset; i<offset+count; i++)
-			if (done || buffer[i] == mEndOfTransmission)
-			{
-				done=true;
-				buffer[i] = 0;
-				
-				if (i==offset)
-					return -1;
-			}
-		
-		return result;//*/
-		
+	{
 		boolean done=false;
 		int tmp=0;
 		int bytesread=0;
