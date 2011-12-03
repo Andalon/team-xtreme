@@ -1,20 +1,13 @@
 package com.freeiz.ucftxts;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
+
 
 import android.app.ListActivity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -23,28 +16,36 @@ import android.widget.Toast;
 import com.freeiz.ucftxts.client.Book;
 import com.freeiz.ucftxts.client.Retailer;
 
-
+/**
+ * @author Donald Thomson
+ *	Formats results dynamically in a readable way.
+ */
 public class ResultsActivity extends ListActivity
 {
-	//ArrayList<String> list;
-	//ArrayAdapter<String> a;
 	TableLayout mTableLayout;
 	ArrayList<Book> mBooks;
 	
+	/**
+	 * Called when the activity is first created. Shows results and initiates building of output.
+	 */
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.results);
 		mTableLayout = (TableLayout)findViewById(R.id.results_layout);
 
+		//get info and add it into the member field
 		Bundle b = getIntent().getExtras();		
 		mBooks = new ArrayList<Book>();
 		mBooks.addAll((ArrayList<Book>) b.get("books"));
         
+		//build output
 		buildList();
 	}
 	
-	
+	/**
+	 * Builds output from the results.
+	 */
 	private void buildList()
 	{
 		
@@ -56,11 +57,15 @@ public class ResultsActivity extends ListActivity
 		else
 		{
 			Toast.makeText(this, "No items found!", Toast.LENGTH_LONG);
-			Log.e("mBooks", "mBooks is empty, yo");
+			Log.e("mBooks", "mBooks is empty");
 		}
 		
 	}
 	
+	/**
+	 * Formats output.
+	 * @param b the book for which information needs to be displayed
+	 */
 	private void addEntry(Book b)
 	{		
 		//first row
